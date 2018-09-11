@@ -1,26 +1,26 @@
-package com.capgemini.employeeapp1.model;
+package com.capgemini.employeeapp.model;
 
 public class Employee {
-	private int employeeId;
+	private int employeeid;
 	private String employeeName;
 	private double employeeSalary;
 	private String employeeDepartment;
 	public Employee() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
-	public Employee(int employeeId, String employeeName, double employeeSalary, String employeeDepartment) {
+	public Employee(int employeeid, String employeeName, double employeeSalary, String employeeDepartment) {
 		super();
-		this.employeeId = employeeId;
+		this.employeeid = employeeid;
 		this.employeeName = employeeName;
 		this.employeeSalary = employeeSalary;
 		this.employeeDepartment = employeeDepartment;
 	}
-	public int getEmployeeId() {
-		return employeeId;
+	public int getEmployeeid() {
+		return employeeid;
 	}
-	public void setEmployeeId(int employeeId) {
-		this.employeeId = employeeId;
+	public void setEmployeeid(int employeeid) {
+		this.employeeid = employeeid;
 	}
 	public String getEmployeeName() {
 		return employeeName;

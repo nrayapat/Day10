@@ -11,16 +11,16 @@
 <hr>
 <form action = "addEmployee" method="post">
 <label>Employee Id: </label>
-<input type = "number" name= "empId"recquired/>
+<input type = "number" name= "employeeId"required/>
 <br>
 <label>Employee Name: </label>
-<input type = "text" name = "empName" size = "15"/>
+<input type = "text" name = "employeeName" size = "15"/>
 <br>
 <label>Employee Salary: </label>
-<input type = "number" name="empSalary" size="15"/>
+<input type = "number" name="employeeSalary" size="15"/>
 <br>
 <label>Employee Department: </label>
-<select name = "empDept" recquired>
+<select name = "employeeDepartment" required>
 <option value = "">--select---</option>
 <option value="IT">IT</option>
 <option value="ADMIN">ADMIN</option>

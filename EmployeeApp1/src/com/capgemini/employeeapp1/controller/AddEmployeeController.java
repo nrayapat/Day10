@@ -1,32 +1,59 @@
 package com.capgemini.employeeapp1.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class AddEmployeeController
- */
+import com.capgemini.employeeapp.dao.EmployeeDao;
+import com.capgemini.employeeapp.dao.impl.EmployeeDaoImpl;
+import com.capgemini.employeeapp.model.Employee;
+
+
 @WebServlet("/addEmployee")
 public class AddEmployeeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+       // private EmployeeDao employeeDao = new EmployeeDaoImpl();	
+	private EmployeeDao employeeDao;
+	private ServletContext context;
+		
     public AddEmployeeController() {
         super();
-        // TODO Auto-generated constructor stub
+        employeeDao = new EmployeeDaoImpl(); 
     }
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+    	context = config.getServletContext();
+    }
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		response.setContentType("text/html");
+		
+		int empId = Integer.parseInt(request.getParameter("empId"));
+		String empName = request.getParameter("empName");
+		double empSalary = Double.parseDouble(request.getParameter("empSalary"));
+		String empDept = request.getParameter("empDept");
+		
+		context.setAttribute("employeeDao", employeeDao);
+		
+		Employee employee = new Employee(empId, empName, empSalary, empDept);
+		RequestDispatcher dispatcher = null;
+		if(employeeDao.addEmployee(employee)) {
+			response.sendRedirect("getAllEmployees");
+		}
+		else {
+			dispatcher = request.getRequestDispatcher("error.jsp");
+			dispatcher.forward(request, response);
+		}
+		
+		
 	}
 
 }
